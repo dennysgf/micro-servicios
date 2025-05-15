@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "615899bd-16ae-44ae-9594-61211a16f18c",
+		"name": "microservicios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21881206"
+	},
+	"item": [
+		{
+			"name": "cliente-persona",
+			"item": [
+				{
+					"name": "Crear Cliente - Jose Lema",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"clienteId\": \"C001\", \"nombre\": \"Jose Lema\", \"identificacion\": \"0705709821\", \"direccion\": \"Otavalo sn y principal\", \"telefono\": \"098254785\", \"contrasena\": \"1234\", \"estado\": true}"
+						},
+						"url": "http://localhost:8080/clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Cliente - Marianela Montalvo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"clienteId\": \"C003\", \"nombre\": \"Marianela Montalvo\", \"identificacion\": \"0705709823\", \"direccion\": \"Amazonas y NNUU\", \"telefono\": \"097548965\", \"contrasena\": \"5678\", \"estado\": true}"
+						},
+						"url": "http://localhost:8080/clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/clientes"
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Cliente por ID - C001",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/clientes/C003"
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Cliente - C002",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"clienteId\": \"C002\", \"nombre\": \"Marianela Montalvo\", \"identificacion\": \"172002\", \"direccion\": \"Amazonas y Naciones Unidas\", \"telefono\": \"097548965\", \"contrasena\": \"9999\", \"estado\": true}"
+						},
+						"url": "http://localhost:8080/clientes/C002"
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Cliente - C001",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8080/clientes/C001"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cuenta-movimiento",
+			"item": [
+				{
+					"name": "Crear Cuenta",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroCuenta\": \"003456\",\n  \"tipoCuenta\": \"Ahorro\",\n  \"saldoInicial\": 1000,\n  \"estado\": true,\n  \"clienteId\": \"CL002\"\n}"
+						},
+						"url": "http://localhost:8081/cuentas"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Depósito",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroCuenta\": \"003456\",\n  \"tipoMovimiento\": \"DEPOSITO\",\n  \"valor\": 500\n}"
+						},
+						"url": "http://localhost:8081/movimientos"
+					},
+					"response": []
+				},
+				{
+					"name": "Registrar Retiro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"numeroCuenta\": \"003456\",\n  \"tipoMovimiento\": \"RETIRO\",\n  \"valor\": 300\n}"
+						},
+						"url": "http://localhost:8081/movimientos"
+					},
+					"response": []
+				},
+				{
+					"name": "Reporte Estado de Cuenta",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/reportes?clienteId=CL002&fechaInicio=2024-01-01&fechaFin=2025-12-31",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"reportes"
+							],
+							"query": [
+								{
+									"key": "clienteId",
+									"value": "CL002"
+								},
+								{
+									"key": "fechaInicio",
+									"value": "2024-01-01"
+								},
+								{
+									"key": "fechaFin",
+									"value": "2025-12-31"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Cuenta",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:8081/cuentas/123456"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
